@@ -33,3 +33,28 @@ body {
   padding: 10px;
   font-size: 1em;
 }
+
+@font-face {
+  font-family: 'CustomFont';
+  src: url('./fonts/RapidSTTrial-RegularWide-BF63b77a3ee3a32.ttf') format('truetype'),
+    /* url('../fonts/font.woff') format('woff'),
+    url('../fonts/font.ttf') format('truetype'); */
+    /* Add additional font formats if necessary */
+    /* Specify the correct path to the font files */
+}
+
+body {
+  background: url(/kp-background.jpg) no-repeat center center;
+  background-size: cover;
+  background-attachment: fixed;
+  font-family: 'CustomFont', sans-serif;
+}
+
+.cover-picker {
+  height: 25px;
+  width: 25px;
+  border-radius: 50%;
+  display: absolute;
+  top: 5;
+  left: 5
+}
