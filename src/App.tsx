@@ -36,10 +36,10 @@ function App() {
                   Take A Screenshot To Save :)
                 </Sparkles>
 
-                <a target="_blank" href="https://katyperry.com" style={{ marginTop: "20px" }}>
+                {/* <a target="_blank" href="https://katyperry.com" style={{ marginTop: "20px" }}>
                   Visit katyperry.com
                   <img src={vinyl} width={100} height={100} alt="signed vinyl" />
-                </a>
+                </a> */}
               </div>
 
             </div>
