@@ -1,22 +1,57 @@
-import { useState } from "react";
-import { SplashScreen } from "./SpalshScreen";
+/* eslint-disable no-extra-boolean-cast */
+import axios from "axios";
+import { useState, useEffect } from "react";
 import { Sparkles } from "./Sparkles";
 import "./index.css";
 import albumArt from "/Katy_Perry_-_143-Photoroom.png";
-
+import useDebounce from "./hooks/useDebounce";
+import { SplashScreen } from "./SplashScreen";
 
 function App() {
   const [text, setText] = useState<string>("");
+  const [moderatedText, setModeratedText] = useState<string>("");
+
   const [toggleCover, setToggleCover] = useState<boolean>(false);
   const [showSplash, setShowSplash] = useState(true);
+
+  const debouncedText = useDebounce(text, 500);
+
+  useEffect(() => {
+    if (debouncedText && !!import.meta.env.VITE_OPENAI_API_KEY) {
+      moderationApiCall(debouncedText);
+    }
+  }, [debouncedText]);
 
   const handleSplashEnd = () => {
     setShowSplash(false);
   };
 
+  const moderationApiCall = async (textToModerate: string) => {
+    try {
+      const response = await axios.post('https://api.openai.com/v1/moderations', {
+        input: textToModerate
+      }, {
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${import.meta.env.VITE_OPENAI_API_KEY}`
+        }
+      });
+      console.log('API Response:', response.data.results[0].flagged);
+
+      if (response.data.results[0].flagged) {
+        setText("");
+        setModeratedText("");
+      } else {
+        setModeratedText(textToModerate);
+      }
+
+    } catch (error) {
+      console.error('API Error:', error);
+    }
+  };
+
   return (
     <div>
-
       {showSplash && <SplashScreen onSplashEnd={handleSplashEnd} />}
       {!showSplash &&
         (
@@ -27,18 +62,13 @@ function App() {
 
               <div className={`image-container ${toggleCover && 'red-cover'}`}>
                 {!toggleCover && <img src={albumArt} alt="" width={500} height={500} />}
-                <div className={`textOverlay ${toggleCover && "chrome-text"}`}>{text}</div>
+                <div className={`textOverlay ${toggleCover && "chrome-text"}`}>{import.meta.env.VITE_OPENAI_API_KEY ? moderatedText : text}</div>
               </div>
 
               <div style={{ marginTop: "20px" }}>
                 <Sparkles>
                   Take A Screenshot To Save :)
                 </Sparkles>
-
-                {/* <a target="_blank" href="https://katyperry.com" style={{ marginTop: "20px" }}>
-                  Visit katyperry.com
-                  <img src={vinyl} width={100} height={100} alt="signed vinyl" />
-                </a> */}
               </div>
 
             </div>
@@ -50,7 +80,7 @@ function App() {
           </div>
         )
       }
-    </div >
+    </div>
   )
 }
 
