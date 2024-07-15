@@ -1,9 +1,8 @@
 import { useState } from "react";
-import albumArt from "/Katy_Perry_-_143-Photoroom.png"
-import { Sparkles } from "./Sparkles";
-import "./index.css"
-import vinyl from "/signed-vinyl.gif"
 import { SplashScreen } from "./SpalshScreen";
+import { Sparkles } from "./Sparkles";
+import "./index.css";
+import albumArt from "/Katy_Perry_-_143-Photoroom.png";
 
 
 function App() {
@@ -17,18 +16,18 @@ function App() {
 
   return (
     <div>
+
       {showSplash && <SplashScreen onSplashEnd={handleSplashEnd} />}
       {!showSplash &&
         (
-          <div style={{ paddingTop: "40px" }}>
+          <div className="its-a-womans-world">
             <div className="cover-picker" style={{ backgroundColor: !toggleCover ? "#ED5027" : "#EDFCFF" }} onClick={() => setToggleCover(prev => !prev)}></div>
-
             <div className="container">
               <input type="text" id="textInput" placeholder="Type here..." value={text} onChange={(e) => setText(e.target.value)} />
 
               <div className={`image-container ${toggleCover && 'red-cover'}`}>
                 {!toggleCover && <img src={albumArt} alt="" width={500} height={500} />}
-                <div className="textOverlay chrome-text">{text}</div>
+                <div className={`textOverlay ${toggleCover && "chrome-text"}`}>{text}</div>
               </div>
 
               <div style={{ marginTop: "20px" }}>

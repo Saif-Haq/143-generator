@@ -4,8 +4,15 @@ body {
   justify-content: center;
   align-items: center;
   /* height: 100vh; */
-  margin: 0;
+  margin: auto;
   background-color: #f0f0f0;
+}
+
+.its-a-womans-world {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  height: 100vh;
 }
 
 .container {
@@ -75,9 +82,9 @@ body {
   height: 25px;
   width: 25px;
   border-radius: 50%;
-  display: absolute;
-  top: 5;
-  left: 5
+  position: absolute;
+  top: 15px;
+  left: 15px
 }
 
 .chrome-text {
@@ -151,6 +158,10 @@ body {
   width: 500px;
   height: 500px;
   background-color: #ED5027;
+}
+
+.footer-heart {
+  text-align: center;
 }
 
 .splash-screen {
