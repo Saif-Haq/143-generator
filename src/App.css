@@ -3,7 +3,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  /* height: 100vh; */
   margin: 0;
   background-color: #f0f0f0;
 }
@@ -15,6 +15,21 @@ body {
 .image-container {
   position: relative;
   /* display: inline-block; */
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+
+@media only screen and (max-width: 600px) {
+  div.image-container {
+    max-width: 300px;
+    max-height: 300px;
+  }
+
+  div.image-container img {
+    width: 300px;
+    height: 300px;
+  }
 }
 
 .textOverlay {
@@ -22,10 +37,16 @@ body {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  color: white;
+  /* color: white; */
   font-size: 2em;
   font-weight: bold;
   pointer-events: none;
+}
+
+@media only screen and (max-width: 600px) {
+  .textOverlay {
+    font-size: 1em;
+  }
 }
 
 #textInput {
@@ -57,4 +78,95 @@ body {
   display: absolute;
   top: 5;
   left: 5
+}
+
+.chrome-text {
+  -webkit-filter: drop-shadow(0 1px 0 hsla(0, 0%, 100%, .7));
+  filter: drop-shadow(0 1px 0 rgba(255, 255, 255, .7));
+  white-space: inherit;
+  background: -webkit-gradient(linear, left top, left bottom, from(#fff), color-stop(50%, #fff), color-stop(80%, #9e9e9e), color-stop(90%, #6e6e6e));
+  background: linear-gradient(180deg, #fff 0, #fff 50%, #9e9e9e 80%, #6e6e6e 90%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+@keyframes comeInOut {
+  0% {
+    transform: scale(0);
+  }
+
+  50% {
+    transform: scale(1);
+  }
+
+  100% {
+    transform: scale(0);
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(180deg);
+  }
+}
+
+.wrapper {
+  display: inline-block;
+  position: relative;
+  vertical-align: baseline;
+}
+
+.sparkle-wrapper {
+  position: absolute;
+  display: block;
+}
+
+.sparkle-svg {
+  display: block;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .sparkle-wrapper {
+    animation: comeInOut 700ms forwards;
+  }
+
+  .sparkle-svg {
+    animation: spin 1000ms linear;
+  }
+}
+
+.child-wrapper {
+  position: relative;
+  z-index: 1;
+  font-weight: bold;
+}
+
+.red-cover {
+  position: relative;
+  width: 500px;
+  height: 500px;
+  background-color: #ED5027;
+}
+
+.splash-screen {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.splash-screen h1 {
+  text-align: center;
+}
+
+.splash-screen img {
+  position: absolute;
+  left: 40%;
+  transform: translate(-50%, -50%);
+  animation: comeInOut 2000ms forwards;
 }
