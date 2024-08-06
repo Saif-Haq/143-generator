@@ -1,10 +1,14 @@
 # 143 Generator
 
-Inspired by the viral Brat generator:
-https://www.bratgenerator.com/
+A 143 generator for Katy Perry's album 143.
 
-master branch is the basic version.
+Inspired by the viral Charli XCX "Brat" album cover art generator( https://www.bratgenerator.com/)
 
-moderation branch implements OPENAI moderation.
+ - master branch is the basic version.
+  -> Sparkly Text Effect
+  -> Two Album Covers
+  -> ScreenShot to save
 
-# Copyrights: Capitol Records (?)
+ - moderation branch implements OPENAI moderation. 
+   -> No inappropriate words get shown on the cover
+
